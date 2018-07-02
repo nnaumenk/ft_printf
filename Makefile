@@ -6,7 +6,7 @@
 #    By: nnaumenk <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/10 14:12:58 by nnaumenk          #+#    #+#              #
-#    Updated: 2018/05/11 19:43:05 by nnaumenk         ###   ########.fr        #
+#    Updated: 2018/07/02 11:16:45 by nnaumenk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ CFILES =	ft_printf.c				\
 			ft_str_flags.c			\
 			ft_unicode.c			\
 			ft_str_mul_div.c		\
-			main.c					\
+			#main.c					\
 
 OFILES = 	$(CFILES:.c=.o)
 
@@ -47,8 +47,8 @@ all: $(NAME)
 $(NAME): $(OFILES)
 		
 		#gcc -I $(HEADER) $(FLAGS) -c $(CFILES)
-		gcc -o $(NAME) $(OFILES)
-		#ar rc $(NAME) $(OFILES)
+		#gcc -o $(NAME) $(OFILES)
+		ar rc $(NAME) $(OFILES)
 		
 #$(MAKE_OFILES):
 #		gcc -I $(HEADER) -c $(CFILES)
