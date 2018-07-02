@@ -118,11 +118,11 @@ int		ft_printf(const char *format, ...)
 			break ;
 		ft_specificator(&form, &my);
 		ft_expr_out(&my);
-		if (my.unicode_check)
-			return (-1);
 	}
 	ft_color_search(&my);
 	write(1, my.str_full, my.len_full);
+	if (my.unicode_check)
+		return (-1);
 	va_end(my.ptr);
 	return (my.len_full);
 }

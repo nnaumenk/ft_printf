@@ -107,7 +107,7 @@ char	*ft_wchardup2(const wchar_t c, t_list *my)
 	{
 		str = ft_my_strnew(1);
 		str[0] = c;
-		//my->unicode_check = 1;
+		my->unicode_check = 1;
 	}
 	return (str);
 }

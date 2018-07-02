@@ -34,7 +34,7 @@ CFILES =	ft_printf.c				\
 			ft_str_flags.c			\
 			ft_unicode.c			\
 			ft_str_mul_div.c		\
-#			main.c					\
+			main.c					\
 
 OFILES = 	$(CFILES:.c=.o)
 
@@ -47,8 +47,8 @@ all: $(NAME)
 $(NAME): $(OFILES)
 		
 		#gcc -I $(HEADER) $(FLAGS) -c $(CFILES)
-		#gcc -o $(NAME) $(OFILES)
-		ar rc $(NAME) $(OFILES)
+		gcc -o $(NAME) $(OFILES)
+		#ar rc $(NAME) $(OFILES)
 		
 #$(MAKE_OFILES):
 #		gcc -I $(HEADER) -c $(CFILES)
