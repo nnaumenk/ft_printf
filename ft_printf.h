@@ -124,7 +124,7 @@ unsigned long	ft_mantisa(char *str, int *exponent);
 int				ft_float_dot(t_list *my);
 char			*ft_float_infinite_numbers(char *str, t_list *my);
 char			*ft_float(char *str_ptr, t_list *my);
-char		*ft_float_add_exponent(char *str, t_list *my, int count, char type);
+char			*ft_float_add_exponent(char *str, t_list *my, int count, char type);
 char			*ft_ftoa(double n, t_list *my);
 
 

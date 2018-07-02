@@ -87,7 +87,10 @@ void	ft_expr_out(t_list *my)
 	}
 	str = ft_expr_to_str(my, "0123456789ABCDEF", "0123456789abcdef");
 	if (my->unicode_check)
+	{
+		ft_my_strcat(my, str, my->len);
 		return ;
+	}
 	if (str == NULL)
 	 	str = ft_my_strdup_precision("(null)", my);////zrobyt null priamo v functcii
 	if (my->flag_comma == '\'')
@@ -121,8 +124,8 @@ int		ft_printf(const char *format, ...)
 	}
 	ft_color_search(&my);
 	write(1, my.str_full, my.len_full);
+	va_end(my.ptr);
 	if (my.unicode_check)
 		return (-1);
-	va_end(my.ptr);
 	return (my.len_full);
 }

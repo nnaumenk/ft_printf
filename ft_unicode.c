@@ -51,13 +51,7 @@ char	*ft_wstrdup_wstr(wchar_t *str, int len, t_list *my)
 	len_full = 0;
 	while (++i < len)
 	{
-		
 		buf = ft_wchardup(str[i], my);
-		if (my->unicode_check == 1)
-		{
-			ft_strdel(&str_full);
-			return (NULL);
-		}
 		str_full = ft_str_join_free(str_full, buf, len_full, my->len);
 		len_full += my->len;
 	}
@@ -86,17 +80,9 @@ char	*ft_wchardup2(const wchar_t c, t_list *my)
 {
 	char *str;
 
-	if (c <= 0xFFFF && MB_CUR_MAX > 2)
+	str = ft_my_strnew(MB_CUR_MAX);
+	if (c <= 0x10FFFF && MB_CUR_MAX > 3)
 	{
-		str = ft_my_strnew(3);
-		my->len = 3;
-		str[0] = ((c >> 12) + 0xE0);
-		str[1] = (((c >> 6) & 0x3F) + 0x80);
-		str[2] = ((c & 0x3F) + 0x80);
-	}
-	else if (c <= 0x10FFFF && MB_CUR_MAX > 3)
-	{
-		str = ft_my_strnew(4);
 		my->len = 4;
 		str[0] = ((c >> 18) + 0xF0);
 		str[1] = (((c >> 12) & 0x3F) + 0x80);
@@ -105,7 +91,7 @@ char	*ft_wchardup2(const wchar_t c, t_list *my)
 	}
 	else
 	{
-		str = ft_my_strnew(1);
+		my->len = 1;
 		str[0] = c;
 		my->unicode_check = 1;
 	}
@@ -116,18 +102,24 @@ char	*ft_wchardup(const wchar_t c, t_list *my)
 {
 	char *str;
 
+	str = ft_my_strnew(MB_CUR_MAX);
 	if (c <= 127)
 	{
-		str = ft_my_strnew(1);
 		my->len = 1;
 		str[0] = c;
 	}
 	else if (c <= 0x7FF && MB_CUR_MAX > 1)
 	{
-		str = ft_my_strnew(2);
 		my->len = 2;
 		str[0] = ((c >> 6) + 0xC0);
 		str[1] = ((c & 0x3F) + 0x80);
+	}
+	else if (c <= 0xFFFF && MB_CUR_MAX > 2)
+	{
+		my->len = 3;
+		str[0] = ((c >> 12) + 0xE0);
+		str[1] = (((c >> 6) & 0x3F) + 0x80);
+		str[2] = ((c & 0x3F) + 0x80);
 	}
 	else
 		str = ft_wchardup2(c, my);
